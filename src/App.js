@@ -1,12 +1,11 @@
 // import logo from './logo.svg';
 import React from 'react';
-import Main from './Main';
+import PlotlyChart from './PlotlyChart';
 // import './App.css';
 
 function App() {
   return (
     <div>
-      <Main/>
     </div>
     // <div className="App">
     //   <header className="App-header">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Plotly from 'react-plotly.js';
 
-class Main extends Component {
+class PlotlyChart extends Component {
 
     render() {
         return (
@@ -57,5 +57,5 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default PlotlyChart;
 
