@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { render } from 'react-dom';
-import Chart from './Chart';
+import Chart from './MainChart/Chart';
+import TradingList from './MainChart/TradingList';
+
 import { getData } from "./utils"
 
 import { TypeChooser } from "react-stockcharts/lib/helper";
@@ -22,13 +24,13 @@ class ChartComponent extends React.Component {
 		}
 		return (
 			<TypeChooser>
-				{type => <Chart type={type} data={this.state.data} />}
-			</TypeChooser>
+				{type => <Chart type={type} data={this.state.data} />}				
+			</TypeChooser>			
 		)
 	}
 }
 
 render(
-	<ChartComponent />,
-	document.getElementById("root")
+	<ChartComponent />, document.getElementById("root"),
+	<TradingList />
 );

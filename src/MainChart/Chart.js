@@ -85,7 +85,7 @@ class CandleStickChartWithMA extends React.Component {
 		const xExtents = [start, end];
 
 		return (
-			<ChartCanvas height={400}
+			<ChartCanvas height={800}
 				width={width}
 				ratio={ratio}
 				margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
