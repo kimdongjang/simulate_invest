@@ -5,9 +5,13 @@ import styles from './main.css';
 
 function Layout() {
   return (
-    <div>
-        <ChartComponent style={styles.container}/>
-        <TradingList style={styles.case1}/>
+    <div class="main_screen">
+        <section class="chart_container">
+          <ChartComponent style={styles.container}/>
+        </section>
+        <aside class="list_container">
+          <TradingList style={styles.case1}/>
+        </aside>
     </div>
   );
 }
