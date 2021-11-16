@@ -2,8 +2,20 @@
     display: flex,
 }
 .case1{
-    display: flex,
+    flex: 1;
 }
 .case2{
     flex: 1,
+}
+/* 차트창,호가창 좌우 분리를 위한 css속성*/
+.main_screen{
+    width:100%;
+    display:flex;
+}
+.chart_container{
+    width : 80%;
+}
+.list_container{
+    width : 20%;
+    min-width: 200px;
 }

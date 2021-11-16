@@ -4,5 +4,6 @@ import './index.css';
 import Layout from './MainChart/Layout';
 
 ReactDOM.render(
-	<Layout />, document.getElementById("root")	
+	<Layout />, document.getElementById("root"),
+	
 )
