@@ -1,6 +1,7 @@
 import { removeTypeDuplicates } from '@babel/types';
 import Counter from './Counter';
 import React from 'react';
+import styles from './main.css';
 
 class TradingList extends React.Component {
     state = {
@@ -35,7 +36,7 @@ class TradingList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <p><button onClick={this.handleReset}>Reset</button></p>
+                <p><button onClick={this.handleReset} className={styles.container}>Reset</button></p>
                 {this.state.counters.map(counter => (
                     <Counter
                         key={counter.id}

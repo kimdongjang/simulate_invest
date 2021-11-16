@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Chart from './Chart';
 import { getData } from "./utils"
+import styles from './main.css';
 
 import { TypeChooser } from "react-stockcharts/lib/helper";
 
@@ -18,7 +19,7 @@ class ChartComponent extends React.Component {
 		}
 		return (
 			<TypeChooser >
-				{type => <Chart type={type} data={this.state.data} />}				
+				{type => <Chart type={type} data={this.state.data} className={styles.container}/>}				
 			</TypeChooser>
 			
 		)

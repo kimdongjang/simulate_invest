@@ -1,8 +1,8 @@
 .container {
-    flex: 1,
+    display: flex,
 }
 .case1{
-    flex: 1,
+    display: flex,
 }
 .case2{
     flex: 1,
