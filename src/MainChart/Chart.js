@@ -21,6 +21,7 @@ import {
 } from "react-stockcharts/lib/coordinates";
 
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
+import { HoverTooltip } from "react-stockcharts/lib/tooltip";
 import {
 	OHLCTooltip,
 	MovingAverageTooltip,
@@ -29,6 +30,44 @@ import { ema, wma, sma, tma } from "react-stockcharts/lib/indicator";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
 
+const dateFormat = timeFormat("%Y-%m-%d");
+const numberFormat = format(".2f");
+
+function tooltipContent(ys) {
+	return ({ currentItem, xAccessor }) => {
+		return {
+			x: dateFormat(xAccessor(currentItem)),
+			y: [
+				{
+					label: "open",
+					value: currentItem.open && numberFormat(currentItem.open)
+				},
+				{
+					label: "고점",
+					value: currentItem.high && numberFormat(currentItem.high)
+				},
+				{
+					label: "저점",
+					value: currentItem.low && numberFormat(currentItem.low)
+				},
+				{
+					label: "마감",
+					value: currentItem.close && numberFormat(currentItem.close)
+				}
+			]
+				.concat(
+					ys.map(each => ({
+						label: each.label,
+						value: each.value(currentItem),
+						stroke: each.stroke
+					}))
+				)
+				.filter(line => line.value)
+		};
+	};
+}
+
+const keyValues = ["high", "low"];
 class CandleStickChartWithMA extends React.Component {
 	render() {
 		const ema20 = ema()
@@ -162,6 +201,24 @@ class CandleStickChartWithMA extends React.Component {
 								echo: "some echo here",
 							},
 						]}
+					/>
+					<HoverTooltip
+						yAccessor={ema50.accessor()}
+						tooltipContent={tooltipContent([
+							{
+								label: `${ema20.type()}(${ema20.options()
+									.windowSize})`,
+								value: d => numberFormat(ema20.accessor()(d)),
+								stroke: ema20.stroke()
+							},
+							{
+								label: `${ema50.type()}(${ema50.options()
+									.windowSize})`,
+								value: d => numberFormat(ema50.accessor()(d)),
+								stroke: ema50.stroke()
+							}
+						])}
+						fontSize={15}
 					/>
 				</Chart>
 				<Chart id={2}
