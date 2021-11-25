@@ -2,11 +2,20 @@
     display: flex,
 }
 .case1{
-    flex: 1;
+    margin: 10px;
 }
 .case2{
     flex: 1,
 }
+
+.layout{
+    margin: 10px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    
+}
+
 /* 차트창,호가창 좌우 분리를 위한 css속성*/
 .main_screen{
     width:100%;
@@ -18,4 +27,5 @@
 .list_container{
     width : 20%;
     min-width: 200px;
+
 }

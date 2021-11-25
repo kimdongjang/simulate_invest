@@ -1,7 +1,8 @@
 import { removeTypeDuplicates } from '@babel/types';
 import Counter from './Counter';
 import React from 'react';
-import styles from './main.css';
+import Price from './Price'
+import styles from './main.module.css';
 
 class TradingList extends React.Component {
     constructor(props) {
@@ -41,17 +42,18 @@ class TradingList extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
-                <p><button onClick={this.handleReset} className={styles.container}>Reset</button></p>
+            <div className={styles.layout}>
+                <p><button onClick={this.handleReset}>Reset</button></p>
                 {this.state.counters.map(counter => (
-                    <Counter
-                        key={counter.id}
-                        counter={counter} // 배열 값을 props를 통해 통째로 전달
-                        onIncrement={this.handleIncrement}
-                        onDelete={this.handleDelete}
-                    />
+                    <Price/>
+                    // <Counter
+                    //     key={counter.id}
+                    //     counter={counter} // 배열 값을 props를 통해 통째로 전달
+                    //     onIncrement={this.handleIncrement}
+                    //     onDelete={this.handleDelete}
+                    // />
                 ))}
-            </React.Fragment>
+            </div>
         )
     }
 }
