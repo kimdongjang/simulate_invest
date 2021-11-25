@@ -1,12 +1,15 @@
-import React from 'react';
+import React from 'react'
+
 import ChartComponent from './ChartComponent';
 import TradingList from './TradingList';
 import Info from './HookTest';
 import Example from './HookTest2';
 import LifeCycleTest from './LifeCycleTest';
+
 import styles from './main.module.css';
 
-function Layout() {
+
+function MainPage() {
   return (
     <div className={styles.main_screen}>
       <div className={styles.chart_container}>
@@ -30,4 +33,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default MainPage;
