@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './main.module.css';
 import Button from 'react-bootstrap/Button';
 
-function Example() {
+function HookTest2() {
   const [count, setCount] = useState(0);
 
   //componentDidMount, componentDidUpdate와 비슷합니다
@@ -26,4 +26,4 @@ function Example() {
   );
 }
 
-export default Example;
+export default HookTest2;
