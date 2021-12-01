@@ -16,7 +16,14 @@ class TradingList extends React.Component {
             { id: 2, value: 2 },
             { id: 3, value: 3 },
             { id: 4, value: 4 },
-        ]
+        ],
+        priceList: [
+            { id: 0, price: 1000, amount:30923 },
+            { id: 1, price: 1005, amount:56923 },
+            { id: 2, price: 1010, amount:182923 },
+            { id: 3, price: 1015, amount:8923 },
+            { id: 4, price: 1020, amount:77923 },
+        ],
     }
 
     handleReset = () => {
@@ -44,8 +51,9 @@ class TradingList extends React.Component {
         return (
             <div className={styles.layout}>
                 <p><button onClick={this.handleReset}>Reset</button></p>
-                {this.state.counters.map(counter => (
-                    <Price/>
+                <Price price="1" />
+                {this.state.priceList.map(data => (
+                    <Price id={data.id} price={data.price} amount={data.amount}/>
                     // <Counter
                     //     key={counter.id}
                     //     counter={counter} // 배열 값을 props를 통해 통째로 전달

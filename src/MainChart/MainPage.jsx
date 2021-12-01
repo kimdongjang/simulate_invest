@@ -3,8 +3,9 @@ import React from 'react'
 import ChartComponent from './ChartComponent';
 import TradingList from './TradingList';
 import Info from './HookTest';
-import Example from './HookTest2';
+import HookTest2 from './HookTest2';
 import LifeCycleTest from './LifeCycleTest';
+import MapTest from './MapTest'
 
 import styles from './main.module.css';
 
@@ -23,10 +24,13 @@ function MainPage() {
           <Info />
         </>
         <>
-          <Example />
+          <HookTest2 />
         </>
         <>
           <LifeCycleTest />
+        </>
+        <>
+          <MapTest/>
         </>
       </div>
     </div>
