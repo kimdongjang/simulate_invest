@@ -23,7 +23,8 @@ function MapTest2 (){
             (season, i) => (
                 <li key={i}>{season}</li>
             )
-        );
+        );       
+    
         return (
             <div>
                 <input type="text"
@@ -37,7 +38,7 @@ function MapTest2 (){
                     {seasonList}
                 </ul>
             </div>
-        );
+        )
     }
 }
 
