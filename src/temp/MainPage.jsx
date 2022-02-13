@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ChartComponent from './ChartComponent';
-import TradingList from './TradingList';
+import ChartComponent from '../Content/Home/ChartComponent';
+import TradingList from '../Content/Home/TradingList';
 import Info from './HookTest';
 import HookTest2 from './HookTest2';
 import LifeCycleTest from './LifeCycleTest';
