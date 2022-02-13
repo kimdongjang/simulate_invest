@@ -1,0 +1,15 @@
+@import "../../index.scss";
+
+.home {
+    display: flex;   
+    flex-direction: row;
+}
+
+.area__chart {
+    width: 80%;
+}
+
+.area__trading__list {
+    max-width: 200px;
+
+}
