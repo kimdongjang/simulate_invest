@@ -1,13 +1,11 @@
 @import "../index.scss";
 
-@mixin header {
-    top:0; left:0; right:0;    
-    background: $light-color;
-    padding: 2rem 5%;
+@mixin header { 
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    align-items: center;
+
+    padding: 2rem 6rem;    
 }
 
 .header{

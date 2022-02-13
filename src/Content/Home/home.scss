@@ -10,6 +10,17 @@
 }
 
 .area__trading__list {
-    max-width: 200px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
 
+}
+
+.area__trading__action {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.area__trading__button{
+    display: block;
 }
