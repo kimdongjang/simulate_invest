@@ -1,1 +1,15 @@
 @import "../index.scss";
+
+.footer__area {
+    background-color: $black;    
+    padding: 3rem;
+}
+.footer__area-copyright p{
+    display: flex;
+    justify-content: right;
+
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    color: $white;
+}

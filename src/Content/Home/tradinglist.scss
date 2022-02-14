@@ -1,11 +1,4 @@
-$theme-colors: (
-    "info": tomato,
-    "danger": teal
-);
-
-
-
-.trade-order-book{
+.tradeorder__area{
     display: block;
     height: 600px;
     // transform: translate3d(234px, 600px, 0px);
@@ -20,17 +13,18 @@ $theme-colors: (
     overflow: auto;
 }
 
-.list-header-wrapper{
+.tradeorder__area-header-wrapper{
     flex: 0 0 auto;
     height: 36px
 }
-.list-book-header {
+.tradeorder__area-header {
     display: flex;
     height: 100%;
     font-size: 14px;
     color: #9e9e9e;
     border-bottom: 3px solid #e0e0e0;
     list-style: none;
+
     .charge-price-unit{
         display: flex;
         flex: 1 0 auto;
@@ -58,7 +52,7 @@ $theme-colors: (
     }
 }
 
-.list-ask{
+.tradeorder__area-content{
     display: block;
     list-style-type: disc;
     list-style: none;
