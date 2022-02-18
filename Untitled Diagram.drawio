@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-18T05:18:51.722Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="i2W-wvkKmFiHsKEh40IM" compressed="false" version="16.6.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-18T05:21:23.295Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="Mb42zRPb0NhO8CuRISuH" compressed="false" version="16.6.1" type="github">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -330,6 +330,19 @@
             <mxPoint x="15" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="kmkAGfGyje23fAeXu6rE-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.88;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.977;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="3DNG-Cj5ey9S82l4caLt-4" source="3DNG-Cj5ey9S82l4caLt-5" target="3DNG-Cj5ey9S82l4caLt-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="180" as="sourcePoint" />
+            <mxPoint x="260" y="180" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="80" y="344" />
+              <mxPoint x="80" y="373" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kmkAGfGyje23fAeXu6rE-7" value="전역 데이터 갱신" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="kmkAGfGyje23fAeXu6rE-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="3DNG-Cj5ey9S82l4caLt-12" value="timeset Get API request(1시간, 1일 등)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;exitX=1;exitY=0.033;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="3DNG-Cj5ey9S82l4caLt-2" target="3DNG-Cj5ey9S82l4caLt-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="315" y="1460" as="sourcePoint" />
@@ -344,6 +357,19 @@
         <mxCell id="3DNG-Cj5ey9S82l4caLt-15" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" parent="3DNG-Cj5ey9S82l4caLt-14" vertex="1">
           <mxGeometry x="45" y="80" width="10" height="300" as="geometry" />
         </mxCell>
+        <mxCell id="kmkAGfGyje23fAeXu6rE-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.9;entryY=0.787;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.9;exitY=0.6;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="3DNG-Cj5ey9S82l4caLt-14" source="3DNG-Cj5ey9S82l4caLt-15" target="3DNG-Cj5ey9S82l4caLt-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="180" as="sourcePoint" />
+            <mxPoint x="100" y="180" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="260" />
+              <mxPoint x="100" y="316" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kmkAGfGyje23fAeXu6rE-4" value="24시간 his로 데이터 백업" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="kmkAGfGyje23fAeXu6rE-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="3DNG-Cj5ey9S82l4caLt-36" value="24시간 데이터 his로 백업 요청" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;" parent="1" source="3DNG-Cj5ey9S82l4caLt-4" target="3DNG-Cj5ey9S82l4caLt-15" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="389.5" y="1460" as="sourcePoint" />
@@ -353,16 +379,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="3DNG-Cj5ey9S82l4caLt-51" value="결과 리턴" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;exitX=0;exitY=0.113;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="3DNG-Cj5ey9S82l4caLt-15" target="3DNG-Cj5ey9S82l4caLt-4" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="389.5" y="1460" as="sourcePoint" />
-            <mxPoint x="549.5" y="1460" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="400" y="1494" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="3DNG-Cj5ey9S82l4caLt-52" value="결과 리턴" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;exitX=0;exitY=0.113;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="3DNG-Cj5ey9S82l4caLt-15" target="3DNG-Cj5ey9S82l4caLt-4" edge="1">
+        <mxCell id="3DNG-Cj5ey9S82l4caLt-52" value="24시간 실시간 데이터 리턴" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;" parent="1" source="3DNG-Cj5ey9S82l4caLt-14" target="3DNG-Cj5ey9S82l4caLt-4" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="545" y="1493.9" as="sourcePoint" />
             <mxPoint x="389.5" y="1494" as="targetPoint" />
@@ -394,6 +411,13 @@
             <Array as="points">
               <mxPoint x="390" y="1474" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kmkAGfGyje23fAeXu6rE-5" value="과거 데이터 리턴" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;exitX=0.2;exitY=0.817;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.53;entryY=0.853;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3DNG-Cj5ey9S82l4caLt-15" target="3DNG-Cj5ey9S82l4caLt-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="545" y="1493.9" as="sourcePoint" />
+            <mxPoint x="389.5" y="1494" as="targetPoint" />
+            <Array as="points" />
           </mxGeometry>
         </mxCell>
       </root>
