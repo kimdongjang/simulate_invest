@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-18T05:17:12.105Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="m8dBtKbSpEOLOp-MQNgj" compressed="false" version="16.5.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-18T05:18:12.534Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="kq5D1d2g2DdX6OQAu4zk" compressed="false" version="16.5.6" type="github">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -350,7 +350,7 @@
         <mxCell id="3DNG-Cj5ey9S82l4caLt-22" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="3DNG-Cj5ey9S82l4caLt-21">
           <mxGeometry x="45" y="80" width="10" height="300" as="geometry" />
         </mxCell>
-        <mxCell id="3DNG-Cj5ey9S82l4caLt-36" value="trade_items_24hour 조회" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;entryX=-0.1;entryY=0.523;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" source="3DNG-Cj5ey9S82l4caLt-4" target="3DNG-Cj5ey9S82l4caLt-15" parent="1">
+        <mxCell id="3DNG-Cj5ey9S82l4caLt-36" value="24시간 데이터 his로 백업 요청" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;" edge="1" source="3DNG-Cj5ey9S82l4caLt-4" target="3DNG-Cj5ey9S82l4caLt-15" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="389.5" y="1460" as="sourcePoint" />
             <mxPoint x="549.5" y="1460" as="targetPoint" />
@@ -392,6 +392,15 @@
         </mxCell>
         <mxCell id="3DNG-Cj5ey9S82l4caLt-55" value="오전00:00시" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="110" y="1550" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3DNG-Cj5ey9S82l4caLt-60" value="trade_items_24hour 조회" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;entryX=0.1;entryY=0.047;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3DNG-Cj5ey9S82l4caLt-4" target="3DNG-Cj5ey9S82l4caLt-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="389.5" y="1460" as="sourcePoint" />
+            <mxPoint x="549.5" y="1460" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="390" y="1474" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
