@@ -1,21 +1,28 @@
 import React, { useState, useEffect, createContext, useCallback } from 'react'
+import { useSelector, useDispatch  } from 'react-redux';
 import axios from 'axios';
 import ChartComponent from './ChartComponent'
 import Products from './Products'
 import TradingList from './TradingList'
-import './home.scss';
+import './homeContainer.scss';
 
-import { useDispatch, useSelector } from 'react-redux';
-import {select } from '../../modules/ApiModule'
+import getUsersPromise from '../../redux/actions/GetAction';
+import SocketAction from '../../redux/actions/SocketAction'
 
-export default function Home() {
-
+export default function HomeContainer() {
     // useSelector Hook으로 스토어에 등록된 상태 조회
-    const productDatas = useSelector(state => state.Products);
-
-    // useDispatch Hook으로 스토어의 dispatch 사용
+    const productDatas = useSelector((state)=>state.payload);
     const dispatch = useDispatch();
-    
+    const getProductDatas = useCallback(() => {
+        dispatch(getUsersPromise()); // redux-promise 방법
+      }, [dispatch]);
+    /**
+     * 리듀서 테스트
+     */
+    // const products = useSelector(state => state.users);
+
+   
+
     const [tradingDatas, setTradingDatas] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -30,17 +37,19 @@ export default function Home() {
         quantity: 10,
     })
 
+
+
     const fetchDatas = async () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
             setTradingDatas(null);
             // loading 상태를 true 로 바꿉니다.
-            setLoading(true);                    
+            setLoading(true);
 
             // 상품 목록 가져오기
-            dispatch();
-            
+            // dispatch();
+
             // 호가창 가져오기
             // const response2 = await axios.get(
             //     '/api/trades/1?user_id=0'
@@ -54,10 +63,16 @@ export default function Home() {
 
     // 해당 컴포넌트가 생성될 때의 이벤트
     useEffect(() => {
-        fetchDatas();
-    }, []);
+         // 소켓데이터 수신하는 채널 "tasks" 생성    
+        // dispatch(SocketAction.waitTask());
+    
+        // redux get api 호출
+        getProductDatas();   
 
-   
+        fetchDatas();
+    }, [dispatch]);
+
+
     function ProductListCallback(data) {
         console.log(data);
         setSelectProduct(data);
@@ -70,7 +85,7 @@ export default function Home() {
     }
 
 
-    const PurchaseProduct = async() => {
+    const PurchaseProduct = async () => {
         var isCheck = true;
         var isSucssess = true;
         // 구매 가능한지 체크
@@ -81,11 +96,11 @@ export default function Home() {
             try {
                 // 구매 API 호출
                 const response = await axios.post(
-                    '/api/trades/test',{
-                        product_id: 0,
-                    }
+                    '/api/trades/test', {
+                    product_id: 0,
+                }
                 );
-                isSucssess = response.data;                
+                isSucssess = response.data;
             } catch (e) {
                 setError(e);
             }
@@ -95,8 +110,8 @@ export default function Home() {
 
 
     if (loading) return <div>로딩중..</div>;
-    if (error) return <div>에러가 발생했습니다</div>;
-    if (!tradingDatas) return null;
+    // if (error) return <div>에러가 발생했습니다</div>;
+    // if (!productDatas) return null;
     // console.log(tradingDatas);
 
     return (
@@ -106,17 +121,17 @@ export default function Home() {
             </div>
             <div className='area__function'>
                 <div className='area__product__list'>
-                    <Products productDatas={productDatas} ProductListCallback={ProductListCallback} />
+                    {/* <Products productDatas={productDatas} ProductListCallback={ProductListCallback} /> */}
                 </div>
                 <div className='area__trading__list'>
-                    <TradingList tradingDatas={tradingDatas} TradingListCallback={TradingListCallback} />
+                    {/* <TradingList tradingDatas={tradingDatas} TradingListCallback={TradingListCallback} /> */}
 
 
                     <div className='area__trading__option'>
                         <div>현재가격</div>
-                        <input value={selectPrice.price} />
+                        {/* <input value={selectPrice.price} /> */}
                         <div>수량</div>
-                        <input value={selectPrice.quantity} />
+                        {/* <input value={selectPrice.quantity} /> */}
 
                     </div>
                     <div className='area__trading__action'>
