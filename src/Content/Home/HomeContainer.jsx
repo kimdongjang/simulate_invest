@@ -1,5 +1,5 @@
-import React, { useState, useEffect, createContext, useCallback } from 'react'
-import { useSelector, useDispatch  } from 'react-redux';
+import React, { useState, useEffect, createContext, useCallback, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import ChartComponent from './ChartComponent'
 import Products from './Products'
@@ -7,21 +7,28 @@ import TradingList from './TradingList'
 import './homeContainer.scss';
 
 import getUsersPromise from '../../redux/actions/GetAction';
-import SocketAction from '../../redux/actions/SocketAction'
+import { actions as socketActions } from '../../redux/actions/SocketAction'
+import { socket, SocketContext } from '../../redux/Socket'
 
 export default function HomeContainer() {
     // useSelector Hook으로 스토어에 등록된 상태 조회
-    const productDatas = useSelector((state)=>state.payload);
-    const dispatch = useDispatch();
-    const getProductDatas = useCallback(() => {
-        dispatch(getUsersPromise()); // redux-promise 방법
-      }, [dispatch]);
     /**
      * 리듀서 테스트
      */
+    const productDatas = useSelector((state) => state.payload);
+    const dispatch = useDispatch();
+    const getProductDatas = useCallback(() => {
+        dispatch(getUsersPromise()); // redux-promise 방법
+    }, [dispatch]);
     // const products = useSelector(state => state.users);
 
-   
+    /**
+     * 소켓 테스트
+     */
+    const  tasks  = useSelector((state) => state.socket);
+    const tasksRef = useRef(0);
+
+
 
     const [tradingDatas, setTradingDatas] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -63,14 +70,19 @@ export default function HomeContainer() {
 
     // 해당 컴포넌트가 생성될 때의 이벤트
     useEffect(() => {
-         // 소켓데이터 수신하는 채널 "tasks" 생성    
-        // dispatch(SocketAction.waitTask());
-    
+        // 소켓데이터 수신하는 채널 "tasks" 생성    
+
+        // dispatch(socketActions.waitTask());
+
+        // socket.on('hi home', (payload) => {
+        //     console.log(payload);
+        // });
+
         // redux get api 호출
-        getProductDatas();   
+        getProductDatas();
 
         fetchDatas();
-    }, [dispatch]);
+    }, []);
 
 
     function ProductListCallback(data) {
@@ -140,7 +152,7 @@ export default function HomeContainer() {
                     </div>
 
                     <div>
-                        
+
                     </div>
                 </div>
             </div>

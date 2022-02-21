@@ -1,8 +1,8 @@
 import {
-    GET_USERS_PENDING,
-    GET_USERS_FULFILLED,
-    GET_USERS_REJECTED,
-} from '../actions/GetAction';
+    POST_USERS_PENDING,
+    POST_USERS_FULFILLED,
+    POST_USERS_REJECTED,
+} from '../actions/PostAction';
 
 const initialState = {
     loading: false,
@@ -10,25 +10,25 @@ const initialState = {
     error: null,
 };
 
-export default function getApi(state = initialState, action) {
+export default function postApi(state = initialState, action) {
     // redux-thunk reducer 처리
 
     // redux-promise reducer 처리
-    if (action.type === GET_USERS_PENDING) {
+    if (action.type === POST_USERS_PENDING) {
         return {
             ...state,
             laoding: true,
             error: null,
         };
     }
-    if (action.type === GET_USERS_FULFILLED) {
+    if (action.type === POST_USERS_FULFILLED) {
         return {
             ...state,
             laoding: false,
             data: action.payload,
         };
     }
-    if (action.type === GET_USERS_REJECTED) {
+    if (action.type === POST_USERS_REJECTED) {
         return {
             ...state,
             laoding: false,
