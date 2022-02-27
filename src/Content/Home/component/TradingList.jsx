@@ -1,5 +1,4 @@
 import { removeTypeDuplicates } from '@babel/types';
-import Counter from '../../temp/Counter';
 import React, {useContext, useEffect} from 'react';
 import Price from './Price'
 

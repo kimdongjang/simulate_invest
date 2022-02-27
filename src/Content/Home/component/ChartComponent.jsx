@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Chart from './Chart';
-import { getData } from "./utils"
+import { getData } from "../lib/utils"
 
 import { TypeChooser } from "react-stockcharts/lib/helper";
 

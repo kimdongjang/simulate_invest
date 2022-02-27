@@ -1,9 +1,12 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+
 import { AiOutlineHeart } from "react-icons/ai"
 import './products.scss'
 
 export default function Products(props) {
-    const productDatas = props.productDatas;
+    const productDatas = useSelector((state) => state.SocketReducer.ListenData);
+    console.log(productDatas)
 
     const rowClickHandler = (e, params) => {
         props.ProductListCallback(params);
@@ -27,7 +30,33 @@ export default function Products(props) {
                 </div>
                 <div className='products__area-content__list__wrapper'>
                     <ul className='products__area-content__list'>
-                        {productDatas.datas.map((data, index) => (
+                        {/* <ul>
+                            
+                        </ul> */}
+                            {/* {productDatas && productDatas.map(data => (
+                                data.datas && data.datas.map(product => (
+                                    <li className='row-unit' key={product.product_id} onClick={(e) => { rowClickHandler(e, product) }}>
+                                    <div className='col-bookmark'>
+                                        <AiOutlineHeart />
+                                    </div>
+                                    <div className='col-1'>
+                                        {product.product_name}
+                                    </div>
+                                    <div className='col-2'>
+                                        {product.point}
+                                    </div>
+                                    <div className='col-3'>
+                                        {product.reg_amount}
+                                    </div>
+                                    <div className='col-4'>
+                                        {product.trade_amount}
+                                    </div>
+                                </li>
+                                ))
+                            ))
+                            } */}
+                            
+                        {/* {productDatas.datas.map((data, index) => (
                             <li className='row-unit' key={index} onClick={(e) => { rowClickHandler(e, data) }}>
                                 <div className='col-bookmark'>
                                     <AiOutlineHeart />
@@ -45,7 +74,7 @@ export default function Products(props) {
                                     {data.max_price}
                                 </div>
                             </li>
-                        ))}
+                        ))} */}
                     </ul>
                 </div>
             </div>

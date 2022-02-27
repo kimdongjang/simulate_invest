@@ -4,30 +4,22 @@ import axios from 'axios';
 import ChartComponent from './ChartComponent'
 import Products from './Products'
 import TradingList from './TradingList'
-import './homeContainer.scss';
+import './homeComponent.scss';
 
-import getUsersPromise from '../../redux/actions/GetAction';
-import { actions as socketActions } from '../../redux/actions/SocketAction'
-import { socket, SocketContext } from '../../redux/Socket'
+import getUsersPromise from '../../../redux/actions/GetAction';
 
-export default function HomeContainer() {
+
+export default function HomeComponent() {
     // useSelector Hook으로 스토어에 등록된 상태 조회
     /**
      * 리듀서 테스트
      */
-    const productDatas = useSelector((state) => state.payload);
+    const productDatas = useSelector((state) => state.ListenData);
     const dispatch = useDispatch();
     const getProductDatas = useCallback(() => {
         dispatch(getUsersPromise()); // redux-promise 방법
     }, [dispatch]);
     // const products = useSelector(state => state.users);
-
-    /**
-     * 소켓 테스트
-     */
-    const  tasks  = useSelector((state) => state.socket);
-    const tasksRef = useRef(0);
-
 
 
     const [tradingDatas, setTradingDatas] = useState(null);
@@ -44,8 +36,14 @@ export default function HomeContainer() {
         quantity: 10,
     })
 
+    // 해당 컴포넌트가 생성될 때의 이벤트
+    useEffect(() => {
+        // redux get api 호출
+        getProductDatas();
 
-
+        fetchDatas();
+    }, []);
+    
     const fetchDatas = async () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -53,9 +51,6 @@ export default function HomeContainer() {
             setTradingDatas(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-
-            // 상품 목록 가져오기
-            // dispatch();
 
             // 호가창 가져오기
             // const response2 = await axios.get(
@@ -67,23 +62,6 @@ export default function HomeContainer() {
         }
         setLoading(false);
     };
-
-    // 해당 컴포넌트가 생성될 때의 이벤트
-    useEffect(() => {
-        // 소켓데이터 수신하는 채널 "tasks" 생성    
-
-        // dispatch(socketActions.waitTask());
-
-        // socket.on('hi home', (payload) => {
-        //     console.log(payload);
-        // });
-
-        // redux get api 호출
-        getProductDatas();
-
-        fetchDatas();
-    }, []);
-
 
     function ProductListCallback(data) {
         console.log(data);
@@ -156,9 +134,6 @@ export default function HomeContainer() {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }

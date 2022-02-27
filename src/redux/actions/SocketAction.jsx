@@ -1,14 +1,10 @@
-import * as type from '../types/SocketType'
+export const SOCKET_START = 'SocketAction/SOCKET_START';
+export const SOCKET_POST = 'SocketAction/SOCKET_POST';
 
-export const sendChat = () => {
-    return {
-        type: type.SEND_CHAT
-    }
-}
+export const socketStart = () => ({ type: SOCKET_START });
+export const socketPost = ListenData => ({ type: SOCKET_POST, data: ListenData });
 
-export const receiveChat = (data) => {
-    return {
-        type: type.RECEIVE_CHAT,
-        data
-    }
-}
+export const initialState = {
+    ListenData: [],
+    timeLabels: []
+};
