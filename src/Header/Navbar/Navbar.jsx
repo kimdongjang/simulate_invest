@@ -6,6 +6,7 @@ export default function Navbar() {
     <div className='navbar'>
       <p><a className='link__style' href='#home'>Home</a></p>
       <p><a className='link__style' href='#menu'>Menu</a></p>
+      <p><a className='link__style' href='#Login'>Login</a></p>
       <p><a className='link__style' href='#about'>About</a></p>
     </div>
   );
