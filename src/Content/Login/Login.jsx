@@ -45,10 +45,7 @@ export default function Login() {
             //응답 실패
             console.error(error);
         }
-        
-
     }
-
 
     function handleSubmit(event) {
         event.preventDefault();
