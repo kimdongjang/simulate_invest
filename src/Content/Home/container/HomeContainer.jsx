@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { socketStart } from '../../../redux/actions/SocketAction';
+import { PRICELIST_LOGIN } from '../../../redux/actions/PriceListAction';
 
 
 import HomeComponent from '../component/HomeComponent';
@@ -26,13 +27,6 @@ class HomeContainer extends Component {
             }
         };
     }
-
-
-    ProductListCallback(data) {
-        this.selectProduct = data;
-    }
-
-
     componentDidMount() {
         console.log('socket')
         this.props.socketStart();
@@ -48,6 +42,38 @@ class HomeContainer extends Component {
         }
         return prevState.ListenData;
     }
+
+
+    ProductListCallback(data) {
+        this.selectProduct = data;
+    }
+    SelectProuct(product){
+        this.props.PRICELIST_LOGIN(product.product_id);
+    }
+
+    PurchaseProduct = async () => {
+        var isCheck = true;
+        var isSucssess = true;
+        // 구매 가능한지 체크
+        if (!isCheck) {
+            return;
+        }
+        else {
+            try {
+                // 구매 API 호출
+                const response = await axios.post(
+                    '/api/trades/test', {
+                    product_id: 0,
+                }
+                );
+                isSucssess = response.data;
+            } catch (e) {
+                // setError(e);
+            }
+            // setLoading(false);
+        }
+    }
+
     render() {
         console.log(this.state.ListenData)
         return (
@@ -63,7 +89,7 @@ class HomeContainer extends Component {
                 </div>
                 <div className='area__function'>
                     <div className='area__product__list'>
-                        <Products rowClickHandler={(product) => this.setState({ product })} />
+                        <Products />
                     </div>
                     <div className='area__trading__list'>
                         <TradingList rowClickHandler={(product) => this.setState({ product })} />
@@ -77,28 +103,7 @@ class HomeContainer extends Component {
 
                         </div>
                         <div className='area__trading__action'>
-                            <div className='area__trading__button__purchase' onClick={async () => {
-                                var isCheck = true;
-                                var isSucssess = true;
-                                // 구매 가능한지 체크
-                                if (!isCheck) {
-                                    return;
-                                }
-                                else {
-                                    try {
-                                        // 구매 API 호출
-                                        const response = await axios.post(
-                                            '/api/trades/test', {
-                                            product_id: 0,
-                                        }
-                                        );
-                                        isSucssess = response.data;
-                                    } catch (e) {
-                                        // setError(e);
-                                    }
-                                    // setLoading(false);
-                                }
-                            }}>매수</div>
+                            <div className='area__trading__button__purchase' onClick={this.PurchaseProduct()}>매수</div>
                             <div className='area__trading__button__purchase'>매도</div>
                         </div>
 

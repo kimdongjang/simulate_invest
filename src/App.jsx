@@ -7,6 +7,7 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import HomeContainer from './Content/Home/container/HomeContainer';
 import Login from './Content/Login/Login';
+import HomeComponent from './Content/Home/component/HomeComponent';
 
 
 
@@ -14,7 +15,7 @@ function App() {
     return (
         <div className='App'>
             <Header />
-            <HomeContainer />
+            <HomeComponent />
             <Footer />
             <Login/>
         </div>

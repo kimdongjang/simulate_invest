@@ -7,6 +7,7 @@ import TradingList from './TradingList'
 import './homeComponent.scss';
 
 import getUsersPromise from '../../../redux/actions/GetAction';
+import { socketStart } from '../../../redux/actions/SocketAction';
 import MyChart from '../chart/MyChart';
 
 
@@ -41,8 +42,11 @@ export default function HomeComponent() {
 
     // 해당 컴포넌트가 생성될 때의 이벤트
     useEffect(() => {
+        dispatch(socketStart());
+
         // redux get api 호출
         getProductDatas();
+        
 
         fetchDatas();
     }, []);
@@ -120,7 +124,7 @@ export default function HomeComponent() {
             </div>
             <div className='area__function'>
                 <div className='area__product__list'>
-                    {/* <Products productDatas={productDatas} ProductListCallback={ProductListCallback} /> */}
+                    <Products productDatas={productDatas} ProductListCallback={ProductListCallback} />
                 </div>
                 <div className='area__trading__list'>
                     {/* <TradingList tradingDatas={tradingDatas} TradingListCallback={TradingListCallback} /> */}

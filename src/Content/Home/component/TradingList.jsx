@@ -25,25 +25,22 @@ export default function TradingList({ rowClickHandler }) {
                 </div>
                 <div className='tradeorder__area-content-wrapper'>
                     <ul className='tradeorder__area-content'>
-                        {productDatas && productDatas.map(data => (
+                        {/* {productDatas && productDatas.map(data => (
                             data.datas && data.datas.map(product => (
-                                <li className='row-unit' key={product.product_id} onClick={(e) => { rowClickHandler(e, product) }}>
+                                <li className='row-unit' key={product.price_id} onClick={(e) => { rowClickHandler(e, product) }}>
                                     <div className='col-1'>
-                                        {product.product_name}
+                                        {product.price}
                                     </div>
                                     <div className='col-2'>
                                         {product.point}
                                     </div>
                                     <div className='col-3'>
-                                        {product.reg_amount}
-                                    </div>
-                                    <div className='col-4'>
-                                        {product.trade_amount}
+                                        {product.percent}
                                     </div>
                                 </li>
                             ))
                         ))
-                        }
+                        } */}
 
                         {/* {productDatas.datas.map((data, index) => (
                             <li className='row-unit' key={index} onClick={(e)=>{rowClickHandler(e, data)}}>

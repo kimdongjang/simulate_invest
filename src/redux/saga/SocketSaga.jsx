@@ -76,6 +76,45 @@ function initUserWebsocket(action){
     });
 }
 
+function initPriceListWebsocket(action){
+    return eventChannel((emitter) => {
+        console.log(action.PriceId)
+        // let token = btoa(action.token)
+        let priceList_ws = new WebSocket("wss://ws.channels.honeycombpizza.link/ws/price/" + action.PriceId + "/");
+        console.log("priceList_ws", priceList_ws);
+        
+        
+        priceList_ws.onopen = () => {
+            console.log("Opening PriceList Websocket");
+            // ws.send(JSON.stringify(subscribe));
+        };
+
+        priceList_ws.onerror = (error) => {
+            console.log("ws ERROR: ", error);
+            console.dir(error);
+        };
+        
+        priceList_ws.onmessage = (e) => {
+            let value = null;
+            console.log(e)
+            try {
+                value = JSON.parse(e.data);
+            } catch (e) {
+                console.error(`Error Parsing Data: ${e.data}`);
+            }
+            
+            // emitter({
+            //     type: "UserAction/LOGIN_LISTEN",
+            //     ListenData: value
+            // });
+        }
+
+        return () => {
+            priceList_ws.close();
+        };
+    });
+}
+
 function* wsSaga() {
     const channel = yield call(initWebsocket);    
     while (true) {
@@ -85,9 +124,14 @@ function* wsSaga() {
 }
 
 function* wsLoginChannel(action) {
-    console.log(action)
-
     const loginChannel = yield call(initUserWebsocket, action);  
+    while (true) {        
+        const action = yield take(loginChannel);
+        yield put(action);
+    }
+}
+function* wsPriceListChannel(action) {
+    const loginChannel = yield call(initPriceListWebsocket, action);  
     while (true) {        
         const action = yield take(loginChannel);
         yield put(action);
@@ -99,4 +143,7 @@ export function* watchLiveDataSaga() {
 }
 export function* watchLoginDataSaga(){
     yield takeEvery("UserAction/LOGIN", wsLoginChannel);
+}
+export function* watchPriceListDataSaga(){
+    yield takeEvery("PriceListAction/LOGIN", wsPriceListChannel);
 }
