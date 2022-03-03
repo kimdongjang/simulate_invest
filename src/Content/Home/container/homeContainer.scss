@@ -1,0 +1,40 @@
+@import "../../../index.scss";
+
+.home {
+    display: flex;   
+    flex-direction: row;
+}
+
+.area__chart {
+    width: 70%;
+    border: 3px solid #e0e0e0;
+    resize: horizontal;
+	overflow: auto;
+}
+
+.area__function {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+
+    border: 3px solid #e0e0e0;
+}
+
+.area__trading__action {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.area__trading__button{
+    display: block;
+}
+
+.area__trading__button__purchase {
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid $button-border;
+    text-align: center;
+    margin-bottom: 10rem;
+    cursor: pointer;
+}

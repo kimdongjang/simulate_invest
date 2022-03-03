@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineHeart } from "react-icons/ai"
 import './products.scss'
 
-export default function Products(props) {
+export default function Products({selectProduct, rowClickHandler}) {
     const productDatas = useSelector((state) => state.SocketReducer.ListenData);
     console.log(productDatas)
 
-    const rowClickHandler = (e, params) => {
-        props.ProductListCallback(params);
-    }
+    // const rowClickHandler = (e, params) => {
+    //     props.ProductListCallback(params);
+    // }
 
     return (
         <div className='products__area'>
@@ -30,10 +30,10 @@ export default function Products(props) {
                 </div>
                 <div className='products__area-content__list__wrapper'>
                     <ul className='products__area-content__list'>
-                        {/* <ul>
+                        <ul>
                             
-                        </ul> */}
-                            {/* {productDatas && productDatas.map(data => (
+                        </ul>
+                            {productDatas && productDatas.map(data => (
                                 data.datas && data.datas.map(product => (
                                     <li className='row-unit' key={product.product_id} onClick={(e) => { rowClickHandler(e, product) }}>
                                     <div className='col-bookmark'>
@@ -54,7 +54,7 @@ export default function Products(props) {
                                 </li>
                                 ))
                             ))
-                            } */}
+                            }
                             
                         {/* {productDatas.datas.map((data, index) => (
                             <li className='row-unit' key={index} onClick={(e) => { rowClickHandler(e, data) }}>

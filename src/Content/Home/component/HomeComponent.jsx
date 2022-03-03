@@ -7,6 +7,7 @@ import TradingList from './TradingList'
 import './homeComponent.scss';
 
 import getUsersPromise from '../../../redux/actions/GetAction';
+import MyChart from '../chart/MyChart';
 
 
 export default function HomeComponent() {
@@ -35,6 +36,8 @@ export default function HomeComponent() {
         price: 100,
         quantity: 10,
     })
+
+
 
     // 해당 컴포넌트가 생성될 때의 이벤트
     useEffect(() => {
@@ -107,7 +110,13 @@ export default function HomeComponent() {
     return (
         <div className='home'>
             <div className='area__chart'>
-                <ChartComponent />
+                {/* <MyChart  date={date}
+                            open={open}
+                            close={close}
+                            high={high}
+                            low={low}
+                            volume={volume}
+                            /> */}
             </div>
             <div className='area__function'>
                 <div className='area__product__list'>

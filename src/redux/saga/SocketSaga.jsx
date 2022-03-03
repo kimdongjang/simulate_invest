@@ -2,8 +2,8 @@ import { eventChannel } from "redux-saga";
 import { call, put, take, takeEvery } from "@redux-saga/core/effects";
 
 function initWebsocket() {    
-    return eventChannel((emitter) => {
-        let ws = new WebSocket("/ws/notify/");
+    return eventChannel((emitter) => {        
+        let ws = new WebSocket("wss://ws.channels.honeycombpizza.link/ws/notify/");
 
         console.log("ws", ws);
 
@@ -41,7 +41,7 @@ function initUserWebsocket(action){
     return eventChannel((emitter) => {
         console.log(action.token)
         let token = btoa(action.token)
-        let user_ws = new WebSocket("/ws/personal/" + token + "/");
+        let user_ws = new WebSocket("wss://ws.channels.honeycombpizza.link/ws/personal/" + token + "/");
         console.log("user_ws", user_ws);
         
         
