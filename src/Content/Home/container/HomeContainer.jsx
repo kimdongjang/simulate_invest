@@ -4,7 +4,7 @@ import { socketStart } from '../../../redux/actions/SocketAction';
 import { PRICELIST_LOGIN } from '../../../redux/actions/PriceListAction';
 
 
-import HomeComponent from '../component/HomeComponent';
+import HomeComponent from '../component/HomeComponen';
 import Products from '../component/Products';
 import TradingList from '../component/TradingList'
 import axios from 'axios';

@@ -1,7 +1,7 @@
 import {
-    POST_USERS_PENDING,
-    POST_USERS_FULFILLED,
-    POST_USERS_REJECTED,
+    POST_REQUEST_PENDING,
+    POST_REQUEST_FULFILLED,
+    POST_REQUEST_REJECTED,
 } from '../actions/PostAction';
 
 const initialState = {
@@ -14,21 +14,21 @@ export default function postApi(state = initialState, action) {
     // redux-thunk reducer 처리
 
     // redux-promise reducer 처리
-    if (action.type === POST_USERS_PENDING) {
+    if (action.type === POST_REQUEST_PENDING) {
         return {
             ...state,
             laoding: true,
             error: null,
         };
     }
-    if (action.type === POST_USERS_FULFILLED) {
+    if (action.type === POST_REQUEST_FULFILLED) {
         return {
             ...state,
             laoding: false,
             data: action.payload,
         };
     }
-    if (action.type === POST_USERS_REJECTED) {
+    if (action.type === POST_REQUEST_REJECTED) {
         return {
             ...state,
             laoding: false,

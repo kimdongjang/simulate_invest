@@ -8,6 +8,7 @@ import './homeComponent.scss';
 
 import getUsersPromise from '../../../redux/actions/GetAction';
 import { socketStart } from '../../../redux/actions/SocketAction';
+import { socketStart } from '../../../redux/actions/PostAction';
 import MyChart from '../chart/MyChart';
 
 
@@ -42,34 +43,18 @@ export default function HomeComponent() {
 
     // 해당 컴포넌트가 생성될 때의 이벤트
     useEffect(() => {
+        // 전체 상품/호가 가져오기 위한 웹소켓 시작
         dispatch(socketStart());
 
         // redux get api 호출
-        getProductDatas();
+        //getProductDatas();
         
-
-        fetchDatas();
     }, []);
     
-    const fetchDatas = async () => {
-        try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setTradingDatas(null);
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-
-            // 호가창 가져오기
-            // const response2 = await axios.get(
-            //     '/api/trades/1?user_id=0'
-            // );
-            // setTradingDatas(response2.data);
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
-    };
-
+    /**
+     *  상품 리스트 클릭 콜백
+     * @param {*} data 
+     */
     function ProductListCallback(data) {
         console.log(data);
         setSelectProduct(data);
@@ -82,27 +67,11 @@ export default function HomeComponent() {
     }
 
 
+    /**
+     * 상품 구매 액션
+     */
     const PurchaseProduct = async () => {
-        var isCheck = true;
-        var isSucssess = true;
-        // 구매 가능한지 체크
-        if (!isCheck) {
-            return;
-        }
-        else {
-            try {
-                // 구매 API 호출
-                const response = await axios.post(
-                    '/api/trades/test', {
-                    product_id: 0,
-                }
-                );
-                isSucssess = response.data;
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-        }
+        dispatch(postPromise('/api/trades/test', 0));
     }
 
 
