@@ -1,6 +1,7 @@
 import { eventChannel } from "redux-saga";
 import { call, put, take, takeEvery } from "@redux-saga/core/effects";
 import { UserAction } from "../actions/UserAction";
+import { PriceListAction } from "../actions/PriceListAction";
 
 function initWebsocket() {    
     return eventChannel((emitter) => {        
@@ -62,7 +63,7 @@ function initUserWebsocket(action:UserAction){
             try {
                 value = JSON.parse(e.data);
             } catch (e) {
-                console.error(`Error Parsing Data: ${e.data}`);
+                console.error(`Error Parsing Data: ${e}`);
             }
             
             emitter({
@@ -77,11 +78,11 @@ function initUserWebsocket(action:UserAction){
     });
 }
 
-function initPriceListWebsocket(action){
+function initPriceListWebsocket(action: PriceListAction){
     return eventChannel((emitter) => {
-        console.log(action.PriceId)
+        console.log(action.payload)
         // let token = btoa(action.token)
-        let priceList_ws = new WebSocket("wss://ws.channels.honeycombpizza.link/ws/price/" + action.PriceId + "/");
+        let priceList_ws = new WebSocket("wss://ws.channels.honeycombpizza.link/ws/price/" + action.payload + "/");
         console.log("priceList_ws", priceList_ws);
         
         
@@ -101,7 +102,7 @@ function initPriceListWebsocket(action){
             try {
                 value = JSON.parse(e.data);
             } catch (e) {
-                console.error(`Error Parsing Data: ${e.data}`);
+                console.error(`Error Parsing Data: ${e}`);
             }
             
             // emitter({
@@ -131,7 +132,7 @@ function* wsLoginChannel(action: UserAction): unknown {
         yield put(action);
     }
 }
-function* wsPriceListChannel(action): unknown {
+function* wsPriceListChannel(action: PriceListAction): unknown {
     const loginChannel = yield call(initPriceListWebsocket, action);  
     while (true) {        
         const action = yield take(loginChannel);

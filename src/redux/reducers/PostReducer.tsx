@@ -2,6 +2,7 @@ import {
     POST_REQUEST_PENDING,
     POST_REQUEST_FULFILLED,
     POST_REQUEST_REJECTED,
+    PostAction,
 } from '../actions/PostAction';
 
 const initialState = {
@@ -10,7 +11,7 @@ const initialState = {
     error: null,
 };
 
-export default function postApi(state = initialState, action) {
+export default function postApi(state = initialState, action:PostAction) {
     // redux-thunk reducer 처리
 
     // redux-promise reducer 처리
