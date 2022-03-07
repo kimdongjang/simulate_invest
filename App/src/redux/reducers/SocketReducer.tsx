@@ -1,5 +1,3 @@
-import { createReducer } from "typesafe-actions";
-
 import { SOCKET_POST, SOCKET_START } from "../actions/SocketAction"
 import { SocketState, SocketAction } from "../types/SocketType";
 

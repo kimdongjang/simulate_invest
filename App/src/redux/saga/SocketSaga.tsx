@@ -17,9 +17,9 @@ function initWebsocket() {
         ws.onerror = (error) => {
             console.log("ws ERROR: ", error);
             console.dir(error);
-        };        
+        };                
 
-        ws.onmessage = (e) => {
+        ws.onmessage = (e:MessageEvent) => {
             let value = null;
             console.log(e)
             try {
@@ -57,7 +57,7 @@ function initUserWebsocket(action:UserAction){
             console.dir(error);
         };
         
-        user_ws.onmessage = (e) => {
+        user_ws.onmessage = (e:MessageEvent) => {
             let value = null;
             console.log(e)
             try {
@@ -96,7 +96,7 @@ function initPriceListWebsocket(action: PriceListAction){
             console.dir(error);
         };
         
-        priceList_ws.onmessage = (e) => {
+        priceList_ws.onmessage = (e:MessageEvent) => {
             let value = null;
             console.log(e)
             try {

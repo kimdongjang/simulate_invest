@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { AiOutlineHeart } from "react-icons/ai"
 import './products.scss'
+import { RootState } from '../../../redux/reducers/RootReducer';
 
-export default function Products({selectProduct, rowClickHandler}) {
-    const productDatas = useSelector((state) => state.SocketReducer.ListenData);
+export default function Products({rowClickHandler}) {
+    const productDatas = useSelector((state: RootState) => state.ListenData);
     console.log(productDatas)
 
     // const rowClickHandler = (e, params) => {
