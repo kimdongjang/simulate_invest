@@ -1,11 +1,10 @@
 //src/redux/actions.js
 import axios from 'axios';
 
-const POST_REQUEST = 'POST_REQUEST';
-
-export const POST_REQUEST_PENDING =   'POST_REQUEST_PENDING';
-export const POST_REQUEST_FULFILLED = 'POST_REQUEST_FULFILLED';
-export const POST_REQUEST_REJECTED =  'POST_REQUEST_REJECTED';
+export const POST_REQUEST = 'POST_REQUEST' as const;
+export const POST_REQUEST_PENDING =   'POST_REQUEST_PENDING' as const;
+export const POST_REQUEST_FULFILLED = 'POST_REQUEST_FULFILLED' as const;
+export const POST_REQUEST_REJECTED =  'POST_REQUEST_REJECTED' as const;
 
 /**
  * parameter의 타입을 지정해서 받도록. url은 string 고정.
