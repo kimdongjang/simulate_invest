@@ -17,3 +17,6 @@ export function postPromise<T>(url:string , param:T) {
         },
     };
 }
+
+
+export type PostAction = | ReturnType<typeof postPromise>;
