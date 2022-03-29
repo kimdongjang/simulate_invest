@@ -6,10 +6,10 @@ import Products from './Products'
 import TradingList from './TradingList'
 import './homeComponent.scss';
 
-import getUsersPromise from '../../../redux/actions/GetAction';
-import { socketStart } from '../../../redux/actions/SocketAction';
+import getUsersPromise from '../../redux/actions/GetAction';
+import { socketStart } from '../../redux/actions/SocketAction';
 import MyChart from '../chart/MyChart';
-import { RootState } from '../../../redux/reducers/RootReducer';
+import { RootState } from '../../redux/reducers/RootReducer';
 
 
 export default function HomeComponent() {
@@ -17,7 +17,7 @@ export default function HomeComponent() {
     /**
      * 리듀서 테스트
      */
-    const productDatas:[] = useSelector((store:RootState) => store.SocketReducer.ListenData);
+    const productDatas: [] = useSelector((store: RootState) => store.SocketReducer.ListenData);
     const dispatch = useDispatch();
     const getProductDatas = useCallback(() => {
         dispatch(getUsersPromise()); // redux-promise 방법
@@ -48,9 +48,9 @@ export default function HomeComponent() {
 
         // redux get api 호출
         //getProductDatas();
-        
+
     }, []);
-    
+
     /**
      *  상품 리스트 클릭 콜백
      * @param {*} data 
