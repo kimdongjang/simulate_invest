@@ -8,18 +8,33 @@ const SVG_CHART_HEIGHT = 400;
 const SVG_VOLUME_WIDTH = 800;
 const SVG_VOLUME_HEIGHT = 400;
 
-export default function MyChart() {
-    const x0 = 50;
-    const xAxisLength = SVG_CHART_WIDTH - x0 * 2;
-    const y0 = 50;
-    const yAxisLength = SVG_CHART_HEIGHT - y0 * 2;
+type Props = {
+  date: string[];
+  open: number[];
+  close: number[];
+  high: number[];
+  low: number[];
+  volume: number[];
+};
 
-    const xAxisY = y0 + yAxisLength;
+type VolumeProps = {
+  date: string[];
+  volume: number[];
+};
 
+
+export const MyChart: React.FC<Props> = ({
+    date,
+    open,
+    close,
+    high,
+    low,
+    volume,
+  }) => {
     return (
         <div className="chart">
             <CandleChart />
-            <VolumeChart />
+            <VolumeChart date={date} volume={volume}  />
         </div>
     )
 }
@@ -52,7 +67,7 @@ const CandleChart = () => {
     );
 };
 
-const VolumeChart = ({ date, volume }) => {
+const VolumeChart: React.FC<VolumeProps> = ({ date, volume }) => {
     const x0 = 150;
     const xAxisLength = SVG_VOLUME_WIDTH - x0 * 2;
     const y0 = 50;
@@ -67,11 +82,11 @@ const VolumeChart = ({ date, volume }) => {
     // 배열.reduce((누적값, 현잿값, 인덱스, 요소) => { return 결과 }, 초깃값);
 
     const dataYMax = dateVolume.reduce(
-        (max, [_, dataY]) => Math.max(max, dataY),
+        (max, [_, dataY]) => Math.max(max, dataY as number),
         -Infinity
     );
     const dataYMin = dateVolume.reduce(
-        (min, [_, dataY]) => Math.min(min, dataY),
+        (min, [_, dataY]) => Math.min(min, dataY as number),
         Infinity
     );
     const dataYRange = dataYMax - dataYMin;
