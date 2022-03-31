@@ -45,7 +45,6 @@ export default function HomeComponent() {
     useEffect(() => {
         // 전체 상품/호가 가져오기 위한 웹소켓 시작
         dispatch(socketStart());
-
         // redux get api 호출
         //getProductDatas();
 
