@@ -16,7 +16,11 @@ export default function HomeComponent() {
     /**
      * 리듀서 테스트
      */
+<<<<<<< HEAD
     const productDatas: [] = useSelector((store: RootState) => store.SocketReducer.);
+=======
+    const productDatas:[] = useSelector((store:RootState) => store.SocketReducer.);
+>>>>>>> 4111b3359c1899c36958d0e234140f1e0c669432
     const dispatch = useDispatch();
     const getProductDatas = useCallback(() => {
         dispatch(getUsersPromise()); // redux-promise 방법
