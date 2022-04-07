@@ -1,3 +1,21 @@
+@tailwind base;
+@tailwind components;
+
+.input {
+  @apply focus:outline-none focus:border-cyan-600 p-3 border-2  text-lg border-cyan-300 transition-colors;
+}
+
+.btn {
+  @apply mt-3 text-lg font-medium text-white py-4 bg-cyan-400 hover:bg-cyan-600 transition-colors;
+}
+text {
+  fill: #8b8b8e;
+}
+line {
+  stroke: #8b8b8e;
+}
+@tailwind utilities;
+
 html,
 body {
   padding: 0;

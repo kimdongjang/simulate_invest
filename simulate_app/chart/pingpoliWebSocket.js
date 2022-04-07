@@ -6,7 +6,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 var _private_socket;
 
-function pingpoliWebSocket( host , customOnOpen , customOnMessage , customOnClose )
+function pingpoliWebSocket(host , customOnOpen , customOnMessage , customOnClose )
 {
     this.host = host;
     this.socketConnected = false;
