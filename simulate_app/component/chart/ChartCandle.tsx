@@ -2,7 +2,7 @@ import axios from "axios";
 import { scaleLinear } from "d3-scale";
 import { dataToArray } from "../../functions/data-to-array";
 import { cryptoCompareHistoryApi, useGetCryptoCompareHistoryQuery, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
-import getCoinCandle from "../../services/getCoinApi";
+import getCoinCandle, { runApi } from "../../services/getCoinApi";
 
 type CandleProps = {
   width: number | undefined;
@@ -26,13 +26,14 @@ export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit
   //***Get data */
   // const { data, isLoading, error } = useGetCryptoCompareHistoryQuery({ limit: defaultLimit, coin: name, }); 
 
-  const { data, isLoading, error } = { data: getCoinCandle(), isLoading:false,error:""};  
+  const { data, isLoading, error } = { data: runApi(), isLoading:false,error:""};  
 
   const coinDataArray: any[] | undefined = [];
   const readingData = async () => {
     return !isLoading ? coinDataArray.push(data) : null;
   };
   readingData();
+  
   const coinDummyArray = coinDataArray[0];
 
   const coinArray: any[] = [];
