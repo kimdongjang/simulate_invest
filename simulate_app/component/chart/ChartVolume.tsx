@@ -1,6 +1,6 @@
 import { dataToArray } from "../../functions/data-to-array";
 import { cryptoCompareHistoryApi, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
-import useBinance from "../../services/getBinance";
+import getCoinCandle from "../../services/getCoinApi";
 
 type VolumeProps = {
     width: number | undefined;
@@ -16,9 +16,8 @@ export const ChartVolume: React.FC<VolumeProps> = ({width,height,defaultLimit,da
     //     limit: defaultLimit,
     //     coin: name,
     // });
-    const { data, isLoading, error } = {data:{Data:useBinance()}, isLoading:"",error:""};
+    const { data, isLoading, error } = {data:{Data:""}, isLoading:false,error:""};
 
-    console.log(data)
 
     const coinDataArray: any[] | undefined = [];
     const readingData = async () => {
@@ -28,11 +27,9 @@ export const ChartVolume: React.FC<VolumeProps> = ({width,height,defaultLimit,da
     const coinDummyArray = coinDataArray[0];
 
     const coinArray: any[] = [];
-    console.log(coinDummyArray);
-    coinDummyArray
-        ?.slice(dataLength, coinDummyArray.length)
-        .forEach((item: any) => coinArray.push(Object.values(item)));
-    console.log(coinArray);
+    // coinDummyArray
+    //     ?.slice(dataLength, coinDummyArray.length)
+    //     .forEach((item: any) => coinArray.push(Object.values(item)));
 
     const time = dataToArray(coinArray, 0);
     const volumeto = dataToArray(coinArray, 1);

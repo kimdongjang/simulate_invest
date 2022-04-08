@@ -1,7 +1,8 @@
+import axios from "axios";
 import { scaleLinear } from "d3-scale";
 import { dataToArray } from "../../functions/data-to-array";
 import { cryptoCompareHistoryApi, useGetCryptoCompareHistoryQuery, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
-import useBinance from "../../services/getBinance";
+import getCoinCandle from "../../services/getCoinApi";
 
 type CandleProps = {
   width: number | undefined;
@@ -16,7 +17,7 @@ type CandleProps = {
   // bollinger: number[][];
 };
 
-export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit, dataLength, name,
+export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit, dataLength, name
    // clo5,
   // clo20,
   // clo60,
@@ -24,26 +25,33 @@ export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit
 }) => {
   //***Get data */
   // const { data, isLoading, error } = useGetCryptoCompareHistoryQuery({ limit: defaultLimit, coin: name, }); 
-  const { data, isLoading, error } = {data:{Data:{Data:useBinance()}}, isLoading:"",error:""};
+
+  const { data, isLoading, error } = { data: getCoinCandle(), isLoading:false,error:""};  
 
   const coinDataArray: any[] | undefined = [];
   const readingData = async () => {
-    return !isLoading ? coinDataArray.push(data.Data.Data) : null;
+    return !isLoading ? coinDataArray.push(data) : null;
   };
   readingData();
   const coinDummyArray = coinDataArray[0];
 
   const coinArray: any[] = [];
-  coinDummyArray
-    ?.slice(dataLength, coinDummyArray.length)
-    .forEach((item: any) => coinArray.push(Object.values(item)));
-  console.log(coinArray);
+  // coinDummyArray
+  //   ?.slice(dataLength, coinDummyArray.length)
+  //   .forEach((item: any) => coinArray.push(Object.values(item)));
 
-  const date = dataToArray(coinArray, 0);
-  const open = dataToArray(coinArray, 3);
-  const close = dataToArray(coinArray, 6);
-  const high = dataToArray(coinArray, 1);
-  const low = dataToArray(coinArray, 2);
+  // const date = dataToArray(coinArray, 0);
+  // const open = dataToArray(coinArray, 3);
+  // const close = dataToArray(coinArray, 6);
+  // const high = dataToArray(coinArray, 1);
+  // const low = dataToArray(coinArray, 2);
+  const date = data.date;
+  const open = data.open;
+  const close = data.close;
+  const high = data.high;
+  const low = data.low;
+  console.log(date[0])
+  // console.log(date[0]))
 
   //***Get data done*/
 
