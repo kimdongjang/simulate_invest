@@ -1,6 +1,7 @@
 import { scaleLinear } from "d3-scale";
 import { dataToArray } from "../../functions/data-to-array";
-import { useGetCryptoCompareHistoryQuery } from "../../services/cryptoApi";
+import { cryptoCompareHistoryApi, useGetCryptoCompareHistoryQuery, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
+import useBinance from "../../services/getBinance";
 
 type CandleProps = {
   width: number | undefined;
@@ -15,19 +16,15 @@ type CandleProps = {
   // bollinger: number[][];
 };
 
-export const ChartCandle: React.FC<CandleProps> = ({
-  width,
-  height,
-  defaultLimit,
-  dataLength,
-  name,
-  // clo5,
+export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit, dataLength, name,
+   // clo5,
   // clo20,
   // clo60,
   // bollinger,
 }) => {
   //***Get data */
-  const { data, isLoading, error } = useGetCryptoCompareHistoryQuery({ limit: defaultLimit, coin: name, });
+  // const { data, isLoading, error } = useGetCryptoCompareHistoryQuery({ limit: defaultLimit, coin: name, }); 
+  const { data, isLoading, error } = {data:{Data:{Data:useBinance()}}, isLoading:"",error:""};
 
   const coinDataArray: any[] | undefined = [];
   const readingData = async () => {

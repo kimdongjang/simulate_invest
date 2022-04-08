@@ -7,10 +7,10 @@ import { cryptoApi, cryptoCompareHistoryApi, cryptoHistoryApi } from "../../serv
 
 
 const RootReducer = combineReducers({
-    PostReducer,
-    GetReducer,
-    SocketReducer,
-    UserReducer,  
+    // PostReducer,
+    // GetReducer,
+    // SocketReducer,
+    // UserReducer,  
     [cryptoApi.reducerPath]: cryptoApi.reducer,
     [cryptoHistoryApi.reducerPath]: cryptoHistoryApi.reducer,
     [cryptoCompareHistoryApi.reducerPath]: cryptoCompareHistoryApi.reducer,

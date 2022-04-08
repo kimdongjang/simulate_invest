@@ -1,5 +1,6 @@
 import { dataToArray } from "../../functions/data-to-array";
-import { useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
+import { cryptoCompareHistoryApi, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
+import useBinance from "../../services/getBinance";
 
 type VolumeProps = {
     width: number | undefined;
@@ -9,18 +10,15 @@ type VolumeProps = {
     name: string | undefined;
 };
 
-export const ChartVolume: React.FC<VolumeProps> = ({
-    width,
-    height,
-    defaultLimit,
-    dataLength,
-    name,
-}) => {
+export const ChartVolume: React.FC<VolumeProps> = ({width,height,defaultLimit,dataLength,name,}) => {
     //***Get data */
-    const { data, isLoading, error } = useGetCryptoCompareVolumeQuery({
-        limit: defaultLimit,
-        coin: name,
-    });
+    // const { data, isLoading, error } = useGetCryptoCompareVolumeQuery({
+    //     limit: defaultLimit,
+    //     coin: name,
+    // });
+    const { data, isLoading, error } = {data:{Data:useBinance()}, isLoading:"",error:""};
+
+    console.log(data)
 
     const coinDataArray: any[] | undefined = [];
     const readingData = async () => {
