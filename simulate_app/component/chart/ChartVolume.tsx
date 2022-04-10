@@ -1,6 +1,7 @@
 import { dataToArray } from "../../functions/data-to-array";
 import { cryptoCompareHistoryApi, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
 import getCoinCandle from "../../services/getCoinApi";
+import { CandleTrade } from "./ChartCandle";
 
 type VolumeProps = {
     width: number | undefined;
@@ -8,15 +9,16 @@ type VolumeProps = {
     defaultLimit: number | undefined;
     dataLength: number | undefined;
     name: string | undefined;
+    candleData: CandleTrade | undefined;
 };
 
-export const ChartVolume: React.FC<VolumeProps> = ({width,height,defaultLimit,dataLength,name,}) => {
+export const ChartVolume: React.FC<VolumeProps> = ({ width, height, defaultLimit, dataLength, name, candleData: candleData }) => {
     //***Get data */
     // const { data, isLoading, error } = useGetCryptoCompareVolumeQuery({
     //     limit: defaultLimit,
     //     coin: name,
     // });
-    const { data, isLoading, error } = {data:{Data:""}, isLoading:false,error:""};
+    const { data, isLoading, error } = { data: { Data: candleData }, isLoading: false, error: "" };
 
 
     const coinDataArray: any[] | undefined = [];
@@ -31,10 +33,10 @@ export const ChartVolume: React.FC<VolumeProps> = ({width,height,defaultLimit,da
     //     ?.slice(dataLength, coinDummyArray.length)
     //     .forEach((item: any) => coinArray.push(Object.values(item)));
 
-    const time = dataToArray(coinArray, 0);
-    const volumeto = dataToArray(coinArray, 1);
-    const volumefrom = dataToArray(coinArray, 2);
-    const volumetotal = dataToArray(coinArray, 3);
+    const time = candleData.closetime;
+    const volumeto = candleData.quotevolume;
+    const volumefrom = candleData.basevolume;
+    const volumetotal = candleData.assetvolume;
 
     //***Get data done */
 
