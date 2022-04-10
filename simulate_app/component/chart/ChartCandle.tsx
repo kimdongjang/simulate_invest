@@ -1,8 +1,19 @@
-import axios from "axios";
 import { scaleLinear } from "d3-scale";
 import { dataToArray } from "../../functions/data-to-array";
 import { cryptoCompareHistoryApi, useGetCryptoCompareHistoryQuery, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
-import getCoinCandle, { runApi } from "../../services/getCoinApi";
+import getCoinCandle from "../../services/getCoinApi";
+
+export type CandleTrade = {
+  date: number[];
+  open: number[];
+  close: number[];
+  high: number[];
+  low: number[];
+  closetime: string[];
+  assetvolume: number[];
+  basevolume: number[];
+  quotevolume: number[];
+};
 
 type CandleProps = {
   width: number | undefined;
@@ -10,6 +21,7 @@ type CandleProps = {
   defaultLimit: number | undefined;
   dataLength: number | undefined;
   name: string | undefined;
+  candleData: CandleTrade | undefined;
 
   // clo5: number[];
   // clo20: number[];
@@ -17,8 +29,8 @@ type CandleProps = {
   // bollinger: number[][];
 };
 
-export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit, dataLength, name
-   // clo5,
+export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit, dataLength, name, candleData: candleData
+  // clo5,
   // clo20,
   // clo60,
   // bollinger,
@@ -26,14 +38,14 @@ export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit
   //***Get data */
   // const { data, isLoading, error } = useGetCryptoCompareHistoryQuery({ limit: defaultLimit, coin: name, }); 
 
-  const { data, isLoading, error } = { data: runApi(), isLoading:false,error:""};  
+  const { data, isLoading, error } = { data: candleData, isLoading: false, error: "" };
 
   const coinDataArray: any[] | undefined = [];
   const readingData = async () => {
     return !isLoading ? coinDataArray.push(data) : null;
   };
   readingData();
-  
+
   const coinDummyArray = coinDataArray[0];
 
   const coinArray: any[] = [];
@@ -46,12 +58,11 @@ export const ChartCandle: React.FC<CandleProps> = ({ width, height, defaultLimit
   // const close = dataToArray(coinArray, 6);
   // const high = dataToArray(coinArray, 1);
   // const low = dataToArray(coinArray, 2);
-  const date = data.date;
-  const open = data.open;
-  const close = data.close;
-  const high = data.high;
-  const low = data.low;
-  console.log(date[0])
+  const date = candleData.date;
+  const open = candleData.open;
+  const close = candleData.close;
+  const high = candleData.high;
+  const low = candleData.low;
   // console.log(date[0]))
 
   //***Get data done*/
