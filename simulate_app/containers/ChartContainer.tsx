@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CandleTrade, ChartCandle } from "../component/chart/ChartCandle";
+import { ChartCandle } from "../component/chart/ChartCandle";
 import { ChartVolume } from "../component/chart/ChartVolume";
+import { CandleTrade, CandleVolume } from "../types/charts/CandleType";
 
 type Props = {
   width: number | undefined;
@@ -13,7 +14,7 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
   const [name, setName] = useState("BTC");
   const [defaultLimit, setdefaultLimit] = useState(1000);
   const [dataLength, setDataLength] = useState(900);
-  const [candleData, setChartCandle] = useState<CandleTrade>({
+  const [candleData, setCandleData] = useState<CandleTrade>({
     date: [],
     open: [],
     close: [],
@@ -25,15 +26,20 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
     quotevolume: [],
 
   });
+  const [volumeData, setVolumeData] = useState<CandleVolume>({
+    time:[],
+    volume_base:[],
+    volume_quote:[],
+    volume_total:[],
+  });
   const dataDefaultMinusLength = 18;
   useEffect(() => {
     async function getCoinCandle() {
-      // try ~ catch를 이용해 예외 처리를 하세요.
       try {
         const response = await axios.get(
           'https://api.binance.com/api/v3/klines?symbol=BTCEUR&interval=1d&limit=500'
         );
-        let tempList: CandleTrade = {
+        let trade: CandleTrade = {
           date: [],
           open: [],
           close: [],
@@ -46,18 +52,44 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
         };
 
         for (var i = 0; i < response.data.length; ++i) {
-          tempList.date.push(response.data[i][0]);
-          tempList.open.push(response.data[i][1]);
-          tempList.close.push(response.data[i][2]);
-          tempList.high.push(response.data[i][3]);
-          tempList.low.push(response.data[i][4]);
-          tempList.closetime.push(response.data[i][5]);
-          tempList.assetvolume.push(response.data[i][6]);
-          tempList.basevolume.push(response.data[i][7]);
-          tempList.quotevolume.push(response.data[i][8]);
+          trade.date.push(response.data[i][0]);
+          trade.open.push(response.data[i][1]);
+          trade.close.push(response.data[i][2]);
+          trade.high.push(response.data[i][3]);
+          trade.low.push(response.data[i][4]);
+          trade.closetime.push(response.data[i][5]);
+          trade.assetvolume.push(response.data[i][6]);
+          trade.basevolume.push(response.data[i][7]);
+          trade.quotevolume.push(response.data[i][8]);
         }
 
-        setChartCandle(tempList);
+        setCandleData(trade);
+
+      } catch (e) {
+        console.log(e)
+      }
+
+    };
+    async function getCoinVolume() {
+      try {
+        const response = await axios.get(
+          'https://min-api.cryptocompare.com/data/symbol/histoday?fsym=BTC&tsym=EUR&limit=500'
+        );
+        let volume: CandleVolume = {
+          time:[],
+          volume_base:[],
+          volume_quote:[],
+          volume_total:[],
+        };
+
+        for (var i = 0; i < response.data.Data.length; ++i) {
+          volume.time.push(response.data.Data[i].time);
+          volume.volume_base.push(response.data.Data[i].top_tier_volume_quote);
+          volume.volume_quote.push(response.data.Data[i].top_tier_volume_base);
+          volume.volume_total.push(response.data.Data[i].top_tier_volume_total);
+        }
+
+        setVolumeData(volume);
 
       } catch (e) {
         console.log(e)
@@ -65,6 +97,7 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
 
     };
     getCoinCandle();
+    getCoinVolume();
   }, []);
 
   const dataWheelHandler = () => {
@@ -97,7 +130,7 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
         defaultLimit={defaultLimit}
         dataLength={dataLength}
         name={name}
-        candleData={candleData}
+        candleTrade={candleData}
       />
       <ChartVolume
         width={width}
@@ -105,7 +138,7 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
         defaultLimit={defaultLimit}
         dataLength={dataLength}
         name={name}
-        candleData={candleData}
+        candleVolume={volumeData}
       />
     </div>
   );

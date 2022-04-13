@@ -1,43 +1,34 @@
 import { dataToArray } from "../../functions/data-to-array";
 import { cryptoCompareHistoryApi, useGetCryptoCompareVolumeQuery } from "../../services/cryptoApi";
 import getCoinCandle from "../../services/getCoinApi";
-import { CandleTrade } from "./ChartCandle";
+import { CandleProps } from "../../types/charts/CandleType";
 
-type VolumeProps = {
-    width: number | undefined;
-    height: number | undefined;
-    defaultLimit: number | undefined;
-    dataLength: number | undefined;
-    name: string | undefined;
-    candleData: CandleTrade | undefined;
-};
-
-export const ChartVolume: React.FC<VolumeProps> = ({ width, height, defaultLimit, dataLength, name, candleData: candleData }) => {
+export const ChartVolume: React.FC<CandleProps> = ({ width, height, defaultLimit, dataLength, name, candleVolume: candleVolume }) => {
     //***Get data */
     // const { data, isLoading, error } = useGetCryptoCompareVolumeQuery({
     //     limit: defaultLimit,
     //     coin: name,
     // });
-    const { data, isLoading, error } = { data: { Data: candleData }, isLoading: false, error: "" };
+    const { data, isLoading, error } = { data:  candleVolume, isLoading: false, error: "" };
 
 
     const coinDataArray: any[] | undefined = [];
     const readingData = async () => {
-        return !isLoading ? coinDataArray.push(data.Data) : null;
+        return !isLoading ? coinDataArray.push(data) : null;
     };
     readingData();
+
     const coinDummyArray = coinDataArray[0];
 
     const coinArray: any[] = [];
     // coinDummyArray
     //     ?.slice(dataLength, coinDummyArray.length)
     //     .forEach((item: any) => coinArray.push(Object.values(item)));
-
-    const time = candleData.closetime;
-    const volumeto = candleData.quotevolume;
-    const volumefrom = candleData.basevolume;
-    const volumetotal = candleData.assetvolume;
-
+    
+    const time = candleVolume.time;
+    const volumeto = candleVolume.volume_quote;
+    const volumefrom = candleVolume.volume_base;
+    const volumetotal = candleVolume.volume_total;
     //***Get data done */
 
     let SVG_VOLUME_WIDTH = typeof width === "number" ? width * 1 : 0;
@@ -53,7 +44,6 @@ export const ChartVolume: React.FC<VolumeProps> = ({ width, height, defaultLimit
     for (let i = 0; i < time.length; i++) {
         dateVolume.push([time[i], volumeto[i], volumefrom[i], volumetotal[i]]);
     }
-
     // 배열.reduce((누적값, 현잿값, 인덱스, 요소) => { return 결과 }, 초깃값);
 
     const dataYMax = dateVolume.reduce(
