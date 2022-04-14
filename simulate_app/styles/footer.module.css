@@ -1,0 +1,13 @@
+.footer__area {
+    background-color: #333;    
+    padding: 3rem;
+}
+.footer__area__copyright p{
+    display: flex;
+    justify-content: right;
+
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    color: white;
+}

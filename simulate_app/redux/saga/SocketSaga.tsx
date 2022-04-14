@@ -3,7 +3,7 @@ import { call, put, take, takeEvery } from "@redux-saga/core/effects";
 import { UserAction } from "../actions/UserAction";
 import { PriceListAction } from "../actions/PriceListAction";
 
-function initWebsocket() {    
+function initTradeChartWebsocket() {    
     return eventChannel((emitter) => {        
         let ws = new WebSocket("wss://ws.channels.honeycombpizza.link/ws/notify/");
 
@@ -117,8 +117,8 @@ function initPriceListWebsocket(action: PriceListAction){
     });
 }
 
-function* wsSaga(): unknown {
-    const channel = yield call(initWebsocket);    
+function* wsTradeChartChannel(): unknown {
+    const channel = yield call(initTradeChartWebsocket);    
     while (true) {
         const action = yield take(channel);
         yield put(action);
@@ -141,7 +141,7 @@ function* wsPriceListChannel(action: PriceListAction): unknown {
 }
 
 export function* watchLiveDataSaga() {
-    yield takeEvery("SocketAction/SOCKET_START", wsSaga);
+    yield takeEvery("SocketAction/SOCKET_START", wsTradeChartChannel);
 }
 export function* watchLoginDataSaga(){
     yield takeEvery("UserAction/LOGIN", wsLoginChannel);

@@ -1,4 +1,6 @@
 import Head from "next/head"
+import Footer from "./Footer";
+import Header from "./Header";
 import Navbar from "./Navbar";
 
 type AppLayoutProps = {
@@ -8,12 +10,9 @@ type AppLayoutProps = {
 export default function Layout({ children }: AppLayoutProps) {
     return (
         <>
-            <Head>
-                <title>Hello</title>
-            </Head>
-            <Navbar></Navbar>
-
+            <Header/>
             <div>{children}</div>
+            <Footer/>
         </>
     )
 }

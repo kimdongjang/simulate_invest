@@ -1,0 +1,35 @@
+.header {
+    background-color: #333;    
+    display: grid;
+    place-items: center;
+    height: 5rem;
+  }
+
+.navbarContainer ul{
+    border-radius: 15px;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1;
+    justify-content: flex-end;
+    align-items: center;
+
+    background-color: #f4bc0c;
+    
+    margin: 0;
+}
+
+.navbarContainer ul li {
+    justify-content: space-between;    
+
+    margin: 1rem 1rem;
+    list-style: none;
+
+    font-size: 18px;
+    color: black;
+}
+
+.navbarContainer ul li :hover {
+    transition: color 0.3s ease-out;
+    color: white;
+}
