@@ -54,3 +54,12 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+
+// export const getServerSideProps = async () => {
+//     const res = await axios.get("https://worldtimeapi.org/api/ip");
+  
+//     return {
+//       props: { dateTime: res.data.datetime },
+//     };
+//   };
