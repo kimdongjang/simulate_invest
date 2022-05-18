@@ -16,6 +16,18 @@ export type CandleVolume = {
     volume_total: number[];
   };
 
+export type MyCandleVolume = {
+  time: string[];
+  volume_from: number[];
+  volume_to: number[];
+}
+export type MyCandleTrade = {
+  time: string[];
+  high: number[];
+  low: number[];
+  open: number[];
+  close: number[];
+}
 
   
 export type CandleProps = {

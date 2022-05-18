@@ -8,19 +8,29 @@ import { useEffect } from "react";
 import dynamic from 'next/dynamic'
 import { Size, useWindowSize } from '../functions/usewindowsize'
 import { ChartContainer } from '../containers/ChartContainer'
+import { useSelector, useDispatch } from 'react-redux';
+import { socketStart } from '../redux/actions/SocketAction'
 
 
 const Home: NextPage = () => {
     let canvas = useRef<any>();
+    const dispatch = useDispatch();
     // const [tradeData, setTradeDate] = useState<TradeProps>();
     const size: Size = useWindowSize();
+        useEffect(() => {
+        // 전체 상품/호가 가져오기 위한 웹소켓 시작
+        dispatch(socketStart());
+        // redux get api 호출
+        //getProductDatas();
+
+    }, []);
 
     return (
         <div>
             <div className='home'>
                 <div className='area__chart'>
                     {/* <canvas ref={canvas}></canvas> */}
-                    <ChartContainer width={size.width} height={size.height} />
+                    <ChartContainer width={size.width} height={size.height} />                    
                 </div>
                 <div className='area__function'>
                     <div className='area__product__list'>

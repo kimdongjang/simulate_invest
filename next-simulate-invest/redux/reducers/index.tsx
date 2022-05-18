@@ -9,11 +9,11 @@ import { cryptoApi, cryptoCompareHistoryApi, cryptoHistoryApi } from "../../serv
 const RootReducer = combineReducers({
     // PostReducer,
     // GetReducer,
-    // SocketReducer,
+    SocketReducer,
     // UserReducer,  
-    [cryptoApi.reducerPath]: cryptoApi.reducer,
-    [cryptoHistoryApi.reducerPath]: cryptoHistoryApi.reducer,
-    [cryptoCompareHistoryApi.reducerPath]: cryptoCompareHistoryApi.reducer,
+    // [cryptoApi.reducerPath]: cryptoApi.reducer,
+    // [cryptoHistoryApi.reducerPath]: cryptoHistoryApi.reducer,
+    // [cryptoCompareHistoryApi.reducerPath]: cryptoCompareHistoryApi.reducer,
 });
  
 export default RootReducer;

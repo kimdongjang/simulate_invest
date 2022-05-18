@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ChartCandle } from "../component/chart/ChartCandle";
 import { ChartVolume } from "../component/chart/ChartVolume";
-import { CandleTrade, CandleVolume } from "../types/charts/CandleType";
+import { MyChartCandle } from "../component/chart/MyChartCandle";
+import { CandleTrade, CandleVolume, MyCandleTrade, MyCandleVolume } from "../types/charts/CandleType";
 
 type Props = {
   width: number | undefined;
@@ -32,6 +33,12 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
     volume_quote:[],
     volume_total:[],
   });
+  const [myVolumeData, setMyVolumeData] = useState<MyCandleVolume>({
+    time:[],
+    volume_from:[],
+    volume_to:[],
+  })
+
   const dataDefaultMinusLength = 18;
   useEffect(() => {
     async function getCoinCandle() {
@@ -96,8 +103,45 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
       }
 
     };
+    async function getCoinData() {
+      try{
+        const response = await axios.get(
+          'https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=500'
+        );
+        let volume: MyCandleVolume = {
+          time:[],
+          volume_from:[],
+          volume_to:[],
+        }; let trade: MyCandleTrade = {
+          time:[],
+          high:[],
+          low:[],
+          open:[],
+          close:[],
+        };
+
+        for (var i = 0; i < response.data.Data.length; ++i) {
+          volume.time.push(response.data.Data[i].time);
+          volume.volume_from.push(response.data.Data[i].volumefrom);
+          volume.volume_to.push(response.data.Data[i].volumeto);
+          trade.time.push(response.data.Data[i].time);
+          trade.high.push(response.data.Data[i].high);
+          trade.low.push(response.data.Data[i].low);
+          trade.open.push(response.data.Data[i].open);
+          trade.close.push(response.data.Data[i].close);
+        }
+
+        setMyVolumeData(volume);
+
+      } catch (e) {
+        console.log(e)
+      }      
+    }
+
+
     getCoinCandle();
     getCoinVolume();
+    getCoinData();
   }, []);
 
   const dataWheelHandler = () => {
@@ -124,7 +168,7 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
   //** */ 데이터 배열 순서 : time, high, low, open, volumeFrom volumeTo, close
   return (
     <div onWheel={dataWheelHandler}>
-      <ChartCandle
+      {/* <ChartCandle
         width={width}
         height={height}
         defaultLimit={defaultLimit}
@@ -139,7 +183,11 @@ export const ChartContainer: React.FC<Props> = ({ width, height }) => {
         dataLength={dataLength}
         name={name}
         candleVolume={volumeData}
-      />
+      /> */}
+      <MyChartCandle
+        width={width}
+        height={height}
+        volumeData={myVolumeData}/>
     </div>
   );
 };
