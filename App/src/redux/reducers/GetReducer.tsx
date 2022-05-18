@@ -4,13 +4,13 @@ import {
     GET_USERS_REJECTED,
 } from '../actions/GetAction';
 
-const initialState = {
+const initialState:any = {
     loading: false,
     data: [],
     error: null,
 };
 
-export default function getApi(state = initialState, action) {
+export default function getApi(state = initialState, action:any) {
     // redux-thunk reducer 처리
 
     // redux-promise reducer 처리

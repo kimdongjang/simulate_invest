@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import * as PingpoliCandlestickChart from '../chart/PingpoliCandlestickChart'
-import Products from '../component/main/Products'
 import styles from '../styles/Home.module.css'
 import { useEffect } from "react";
 import dynamic from 'next/dynamic'
